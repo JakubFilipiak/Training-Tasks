@@ -11,9 +11,9 @@ import java.util.logging.Logger;
 /**
  * Created by Jakub Filipiak on 15.05.2019.
  */
-public class Main {
+public class CsvXmlProcessorApp {
 
-    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CsvXmlProcessorApp.class.getName());
 
     private static boolean test = true;
 
