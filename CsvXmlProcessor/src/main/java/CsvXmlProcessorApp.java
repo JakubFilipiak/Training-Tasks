@@ -15,7 +15,7 @@ public class CsvXmlProcessorApp {
 
     private static final Logger LOGGER = Logger.getLogger(CsvXmlProcessorApp.class.getName());
 
-    private static boolean test = true;
+    private static boolean test = false;
 
     private static final String RESOURCES_PATH =
             "D://IdeaProjects/trainingtasks/CsvXmlProcessor/src/main/resources/";
@@ -30,8 +30,8 @@ public class CsvXmlProcessorApp {
         processingAPI processingAPI = new processingAPI();
 
         Scanner scanner = new Scanner(System.in);
-        String dbFileUri;
-        String dataFileUri;
+        String dbFilePathname;
+        String dataFilePathname;
 
 
         System.out.println("--- CSV & XML processor ---");
@@ -42,17 +42,17 @@ public class CsvXmlProcessorApp {
         do {
             System.out.println("DB config file path:");
             if (test) {
-                dbFileUri = DB_FILE_PATH;
+                dbFilePathname = DB_FILE_PATH;
             } else {
-                dbFileUri = scanner.nextLine().trim();
+                dbFilePathname = scanner.nextLine().trim();
             }
-            System.out.println("Path: " + dbFileUri);
+            System.out.println("Path: " + dbFilePathname);
 
-        } while (!databaseAPI.isFileCorrect(dbFileUri));
+        } while (!databaseAPI.isFileCorrect(dbFilePathname));
 
         // ---------- Setting DB Access Data ----------
 
-        databaseAPI.setDBAccessDataFromFile(dbFileUri);
+        databaseAPI.setDBAccessDataFromFile(dbFilePathname);
 
         // ---------- Preparing Data file path ----------
 
@@ -60,16 +60,16 @@ public class CsvXmlProcessorApp {
             do {
                 System.out.println("CSV/XML file path:");
                 if (test) {
-                    dataFileUri = CSV_FILE_PATH;
+                    dataFilePathname = CSV_FILE_PATH;
                 } else {
-                    dataFileUri = scanner.nextLine().trim();
+                    dataFilePathname = scanner.nextLine().trim();
                 }
-                System.out.println("Path: " + dataFileUri);
-            } while (!processingAPI.isFileCorrect(dataFileUri));
+                System.out.println("Path: " + dataFilePathname);
+            } while (!processingAPI.isFileCorrect(dataFilePathname));
 
             // ---------- Processing Data file ----------
 
-            processingAPI.processFile(dataFileUri);
+            processingAPI.processFile(dataFilePathname);
         } else {
             LOGGER.log(Level.WARNING, "ERROR: DBAccessData set incorrectly!");
         }
